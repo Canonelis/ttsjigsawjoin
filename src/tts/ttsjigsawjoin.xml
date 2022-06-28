@@ -7,17 +7,11 @@
     allowDragging="true"
     returnToOriginalPositionWhenReleased="false" />
 
-  <TableLayout class="jjScoreBoards"
-    width="250"
-    height="500"
-    rectAlignment="MiddleRight"
-    offsetXY="-8 50" />
-
   <TableLayout class="jjControlPanel"
     width="250"
-    height="251"
+    height="600"
     rectAlignment="MiddleRight"
-    offsetXY="-8 -330" />
+    offsetXY="-8 0" />
 
   <VerticalLayout class="jjTitle"
     color="rgba(0, 0, 0, 1)"
@@ -30,20 +24,11 @@
   <Text class="panelHeader"
     color="rgba(0.9, 0.9, 0.17, 1)"
     fontStyle="bold" />
-    
-  <Text class="orangeText"
-    color="rgba(0.55, 0.27, 0.07, 1)"
-    fontStyle="bold" />
-    
 
   <Text class="sbRecord"
     color="rgba(0, 0, 0, 1)"
     fontStyle="bold" />
 
-  <TableLayout class="teamBoard"
-    cellPadding="8 8 0 0"
-    cellBackgroundColor="rgba(0, 0, 0, 0)"
-    columnWidths="0 56" />
   <TableLayout class="scoreBoard"
     cellPadding="8 8 0 0"
     cellBackgroundColor="rgba(0, 0, 0, 0)"
@@ -52,107 +37,61 @@
   <Row class="sbRecord"
     preferredHeight="30"
     dontUseTableRowBackground="true"
-    color="rgba(0.5, 0.5, 0.5, 1)"
+    color="rgba(0.5, 0.5, 0.5, 0)"
     tooltipBackgroundColor="rgba(0, 0, 0, 1)" />
   <Cell class="sbName"
     childForceExpandWidth="false"
-    padding="8 8 0 0"
     childAlignment="MiddleLeft" />
   <Cell class="sbScore"
     childForceExpandWidth="false"
-    padding="8 8 0 0"
     childAlignment="MiddleRight" />
 </Defaults>
-<TableLayout id="scoreBoards" class="jjWindow jjScoreBoards">
+<TableLayout class="jjWindow jjControlPanel">
   <Row preferredHeight="50">
     <Cell>
       <VerticalLayout class="jjTitle">
         <Text class="panelHeader" fontSize="20">Jigsaw Join</Text>
-        <Text class="panelText" fontStyle="normal" fontSize="10">by AnthonySunkist&#xA;pieces by BandedOtter</Text>
+        <Text class="panelText" fontStyle="normal" fontSize="10">by AnthonySunkist</Text>
       </VerticalLayout>
     </Cell>
   </Row>
   <Row preferredHeight="30">
     <Cell>
       <HorizontalLayout childForceExpandWidth="false" spacing="4">
-        <Toggle id="puzzleEnabled" visibility="Host" onValueChanged="onValueChanged_puzzleEnabled"></Toggle>
+        <Toggle id="enabled" visibility="Host" onValueChanged="onValueChanged_enabled"></Toggle>
         <Text class="panelText">Puzzle is</Text>
-        <Text id="puzzleEnabled_true" color="#007700" active="false">Enabled</Text>
-        <Text id="puzzleEnabled_false" color="#770000" active="false">Disabled</Text>
+        <Text id="enabled_true" color="#007700">Enabled</Text>
+        <Text id="enabled_false" color="#770000" active="false">Disabled</Text>
       </HorizontalLayout>
     </Cell>
   </Row>
   <Row preferredHeight="30" onClick="onClick_teamScoreBoardTitle">
     <Cell>
       <VerticalLayout class="jjTitle">
-        <Text class="orangeText" fontSize="16">Team Score Board</Text>
+        <Text class="panelHeader" fontSize="16" color="rgba(0.55, 0.27, 0.07, 1)">Team Score Board</Text>
       </VerticalLayout>
     </Cell>
   </Row>
-  <Row id="teamScoreBoard_score1" class="sbRecord" active="false" tooltipPosition="Left">
+  <Row id="teamScoreBoardRow" active="false">
     <Cell>
-      <Cell class="sbName">
-        <Text id="teamScoreBoard_score1_name" class="sbRecord"></Text>
-      </Cell>
-      <Cell class="sbScore">
-        <Text id="teamScoreBoard_score1_score" class="sbRecord"></Text>
-      </Cell>
-    </Cell>
-  </Row>
-  <Row id="teamScoreBoard_score2" class="sbRecord" active="false" tooltipPosition="Left">
-    <Cell>
-      <Cell class="sbName">
-        <Text id="teamScoreBoard_score2_name" class="sbRecord"></Text>
-      </Cell>
-      <Cell class="sbScore">
-        <Text id="teamScoreBoard_score2_score" class="sbRecord"></Text>
-      </Cell>
-    </Cell>
-  </Row>
-  <Row id="teamScoreBoard_score3" class="sbRecord" active="false" tooltipPosition="Left">
-    <Cell>
-      <Cell class="sbName">
-        <Text id="teamScoreBoard_score3_name" class="sbRecord"></Text>
-      </Cell>
-      <Cell class="sbScore">
-        <Text id="teamScoreBoard_score3_score" class="sbRecord"></Text>
-      </Cell>
-    </Cell>
-  </Row>
-  <Row id="teamScoreBoard_score4" class="sbRecord" active="false" tooltipPosition="Left">
-    <Cell>
-      <Cell class="sbName">
-        <Text id="teamScoreBoard_score4_name" class="sbRecord"></Text>
-      </Cell>
-      <Cell class="sbScore">
-        <Text id="teamScoreBoard_score4_score" class="sbRecord"></Text>
-      </Cell>
-    </Cell>
-  </Row>
-  <Row id="teamScoreBoard_score5" class="sbRecord" active="false" tooltipPosition="Left">
-    <Cell>
-      <Cell class="sbName">
-        <Text id="teamScoreBoard_score5_name" class="sbRecord"></Text>
-      </Cell>
-      <Cell class="sbScore">
-        <Text id="teamScoreBoard_score5_score" class="sbRecord"></Text>
-      </Cell>
-    </Cell>
-  </Row>
-  <Row id="teamScoreBoard_score6" class="sbRecord" active="false" tooltipPosition="Left">
-    <Cell>
-      <Cell class="sbName">
-        <Text id="teamScoreBoard_score6_name" class="sbRecord"></Text>
-      </Cell>
-      <Cell class="sbScore">
-        <Text id="teamScoreBoard_score6_score" class="sbRecord"></Text>
-      </Cell>
+      <VerticalScrollView color="" scrollSensitivity="30">
+        <TableLayout id="teamScoreBoard" class="scoreBoard">
+          <!--Row id="teamScoreBoard_score1" class="sbRecord">
+            <Cell class="sbName">
+              <Text id="teamScoreBoard_score1_name" class="sbRecord"></Text>
+            </Cell>
+            <Cell class="sbScore">
+              <Text id="teamScoreBoard_score1_score" class="sbRecord"></Text>
+            </Cell>
+          </Row -->
+        </TableLayout>
+      </VerticalScrollView>
     </Cell>
   </Row>
   <Row preferredHeight="30" onClick="onClick_playerScoreBoardTitle">
     <Cell>
       <VerticalLayout class="jjTitle">
-        <Text class="orangeText" fontSize="16">Player Score Board</Text>
+        <Text class="panelHeader" fontSize="16" color="rgba(0.55, 0.27, 0.07, 1)">Player Score Board</Text>
       </VerticalLayout>
     </Cell>
   </Row>
@@ -172,54 +111,41 @@
       </VerticalScrollView>
     </Cell>
   </Row>
+  <Row preferredHeight="30" visibility="Admin">
+    <Cell>
+      <VerticalLayout class="jjTitle">
+        <Text class="panelHeader" fontSize="16" color="rgba(0.55, 0.27, 0.07, 1)">Puzzle Controls</Text>
+      </VerticalLayout>
+    </Cell>
+  </Row>
+  <Row preferredHeight="20" visibility="Admin">
+    <Cell>
+      <Button onClick="onClick_NewPuzzle">New Puzzle</Button>
+    </Cell>
+  </Row>
+  <Row preferredHeight="30" visibility="Host" active="false">
+    <Cell>
+      <HorizontalLayout childForceExpandWidth="false" spacing="4">
+        <Toggle id="debug_enabled" onValueChanged="onValueChanged_debug_enabled"></Toggle>
+        <Text class="panelText">Debug Enabled</Text>
+      </HorizontalLayout>
+    </Cell>
+  </Row>
+  <Row preferredHeight="20" visibility="Host" active="false">
+    <Cell>
+      <Button onClick="onClick_TestNewFeature">Test New Feature</Button>
+    </Cell>
+  </Row>
+  <Row preferredHeight="20" visibility="Admin" active="false">
+    <Cell>
+      <Button onClick="onClick_ShowCredits">Show Credits</Button>
+    </Cell>
+  </Row>
   <Row preferredHeight="20">
     <Cell>
       <VerticalLayout class="jjTitle">
-        <Text class="panelText" fontSize="10">v2022-04-28-V14</Text>
+        <Text class="panelText" fontSize="10">v2020-07-21-09</Text>
       </VerticalLayout>
-    </Cell>
-  </Row>
-</TableLayout>
-<TableLayout id="puzzleControls" class="jjWindow jjControlPanel" visibility="Host">
-  <Row preferredHeight="30" onClick="onClick_puzzleControls">
-    <Cell>
-      <VerticalLayout class="jjTitle">
-        <Text class="orangeText" fontSize="16">Puzzle Controls</Text>
-      </VerticalLayout>
-    </Cell>
-  </Row>
-  <Row id="puzzleControlsRow" active="true">
-    <Cell>
-      <TableLayout cellBackgroundColor="rgba(0, 0, 0, 0)" childForceExpandHeight="false">
-        <Row preferredHeight="30">
-          <Cell>
-            <HorizontalLayout childForceExpandWidth="false" spacing="4">
-              <Toggle id="adminControl" visibility="Host" onValueChanged="onValueChanged_adminControl"></Toggle>
-              <Text class="panelText">Promoted can admin is</Text>
-              <Text id="adminControl_true" color="#007700" active="false">Enabled</Text>
-              <Text id="adminControl_false" color="#770000" active="false">Disabled</Text>
-            </HorizontalLayout>
-          </Cell>
-        </Row>
-        <Row preferredHeight="25"><Cell>
-          <Button onClick="onClick_NewPuzzle">New Puzzle</Button>
-        </Cell></Row>
-        <Row preferredHeight="25"><Cell>
-          <Button onClick="onClick_ShowCredits" active="true">Show Credits</Button>
-        </Cell></Row>
-        <Row preferredHeight="25"><Cell>
-          <Button onClick="onClick_RecoverDeletedPieces" active="true">Fix Deleted or Non-Joining Pieces</Button>
-        </Cell></Row>
-        <Row preferredHeight="25"><Cell>
-          <Button onClick="onClick_ChangePictureUrl">Change Picture URL</Button>
-        </Cell></Row>
-        <Row preferredHeight="40"><Cell>
-          <Button id="debug_level" onClick="onClick_debug_level" visibility="None">Debugging Unknown</Button>
-        </Cell></Row>
-        <Row preferredHeight="25"><Cell>
-          <Button onClick="onClick_TestNewFeature" visibility="None">Test New Feature</Button>
-        </Cell></Row>
-      </TableLayout>
     </Cell>
   </Row>
 </TableLayout>
@@ -242,42 +168,45 @@
     color="rgba(1, 1, 1, 1)"
     fontStyle="bold" />
 </Defaults>
-<TableLayout >
+<!--TableLayout id="credits" class="creditsBackground" active="false">
   <Row>
-  <HorizontalLayout id="creditsPanel1" class="highlightBar" active="false">
-	<Text id="creditsPlayerName1" class="highlightText emphasize"></Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text class="highlightText">is #</Text>
-	<Text id="creditsPlayerPosition1" class="highlightText emphasize"></Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text class="highlightText">with</Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text id="creditsPlayerScore1" class="highlightText emphasize"></Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text class="highlightText">pieces in</Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text id="creditsPlayerDuration1" class="highlightText emphasize"></Text>
-  </HorizontalLayout>
-  <HorizontalLayout id="creditsPanel2" class="highlightBar" active="false">
-	<Text id="creditsPlayerName2" class="highlightText emphasize"></Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text class="highlightText">is #</Text>
-	<Text id="creditsPlayerPosition2" class="highlightText emphasize"></Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text class="highlightText">with</Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text id="creditsPlayerScore2" class="highlightText emphasize"></Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text class="highlightText">pieces in</Text>
-	<Text class="highlightText">\u00A0</Text>
-	<Text id="creditsPlayerDuration2" class="highlightText emphasize"></Text>
-  </HorizontalLayout>
-  <Button id="closeCredits" ignoreLayout="true" width="160" height="40" offsetXY="0 -110" onClick="onClick_CloseCredits" visibility="Host" active="false">Close Credits</Button>
+    <Cell raycastTarget="true"-->
+      <HorizontalLayout id="creditsPanel1" class="highlightBar" active="false">
+        <Text id="creditsPlayerName1" class="highlightText emphasize"></Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text class="highlightText">is #</Text>
+        <Text id="creditsPlayerPosition1" class="highlightText emphasize"></Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text class="highlightText">with</Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text id="creditsPlayerScore1" class="highlightText emphasize"></Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text class="highlightText">pieces in</Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text id="creditsPlayerDuration1" class="highlightText emphasize"></Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text class="highlightText">minutes</Text>
+      </HorizontalLayout>
+      <HorizontalLayout id="creditsPanel2" class="highlightBar" active="false">
+        <Text id="creditsPlayerName2" class="highlightText emphasize"></Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text class="highlightText">is #</Text>
+        <Text id="creditsPlayerPosition2" class="highlightText emphasize"></Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text class="highlightText">with</Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text id="creditsPlayerScore2" class="highlightText emphasize"></Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text class="highlightText">pieces in</Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text id="creditsPlayerDuration2" class="highlightText emphasize"></Text>
+        <Text class="highlightText">\u00A0</Text>
+        <Text class="highlightText">minutes</Text>
+      </HorizontalLayout>
+      <Button id="closeCredits" ignoreLayout="true" width="160" height="40" offsetXY="0 -200" onClick="onClick_CloseCredits" visibility="Admin" active="false">Close Credits</Button>
+    <!--/Cell>
   </Row>
-  <Row/>
-  <Row/>
-  <Row/>
-</TableLayout>
+</TableLayout-->
 <Defaults>
   <TableLayout class="greetingsBackground"
     rowBackgroundColor="rgba(0, 0, 0, 0.99)" />
@@ -313,41 +242,29 @@
 </TableLayout>
 <Defaults>
   <TableLayout class="puzzleSelector"
-    width="1036"
-    height="700" />
-
-  <TableLayout class="pictureUrlChanger"
     width="636"
-    height="105" />
-
-    <TableLayout class="greyBorder"
-      cellBackgroundColor="rgba(0.5,0.5,0.5,0.3)"
-      cellPadding="2 2 2 2"/>
+    height="600" />
 
   <Button class="puzzlePicture"
     padding="4 4 4 4"
-    tooltipPosition="Right"
-    tooltipBackgroundColor="rgba(0, 0, 0, 1)" />
-
-  <Button class="piecePicture"
-    padding="4 4 4 4"
-    color="rgba(0,0,0,0)"
-    tooltipPosition="Right"
     tooltipBackgroundColor="rgba(0, 0, 0, 1)" />
 
   <ToggleButton class="templateSelection"
-    tooltipPosition="Right"
     tooltipBackgroundColor="rgba(0, 0, 0, 1)"
-    colors="#FFFFFF|#C8C8C8|#7E7E7E|rgba(0.78,0.78,0.78,0.5)"
-    fontSize="16"/>
+    colors="#FFFFFF|#C8C8C8|#7E7E7E|rgba(0.78,0.78,0.78,0.5)" />
 
   <Row class="headerRow"
     preferredHeight="34"
     dontUseTableRowBackground="true"
     color="rgba(0, 0, 0, 1)" />
-    
   <Text class="headerRow"
+    color="rgba(0.55, 0.27, 0.07, 1)"
+    fontStyle="bold"
     fontSize="18" />
+
+  <GridLayout class="puzzleList"
+    height="600"
+    cellSize="150 150" />
 
   <Row class="customRow"
     preferredHeight="30"
@@ -362,11 +279,10 @@
     color="rgba(0, 0, 0, 1)" />
   <Text class="templateHeaderRow"
     color="rgba(1, 1, 1, 1)"
-    fontStyle="bold"
-    fontSize="16" />
+    fontStyle="bold" />
 
   <Row class="spacer"
-    preferredHeight="4" />
+    preferredHeight="8" />
 
   <Row class="tip"
     preferredHeight="20"
@@ -376,7 +292,7 @@
     color="rgba(1, 1, 1, 1)"
     alignment="MiddleLeft" />
 </Defaults>
-<TableLayout id="puzzleSelector" class="jjWindow puzzleSelector greyBorder" visibility="Host" active="false">
+<TableLayout id="puzzleSelector" class="jjWindow puzzleSelector" visibility="Admin" active="false">
   <Row preferredHeight="40">
     <Cell>
       <VerticalLayout class="jjTitle">
@@ -385,117 +301,27 @@
     </Cell>
   </Row>
   <Row class="spacer" />
-  <Row>
-    <TableLayout class="greyBorder" columnWidths="103 0">
-      <Row>
-        <Cell>
-          <TableLayout cellBackgroundColor="rgba(0, 0, 0, 0)">
-            <Row class="headerRow">
-              <Cell>
-                <Text class="panelHeader headerRow orangeText">Pieces</Text>
-              </Cell>
-            </Row>
-            <Row>
-              <Cell >
-                <VerticalScrollView id="pieceListScroll" color="rgba(0, 0, 0, 0)" scrollSensitivity="50" verticalScrollbarVisibility="AutoHideAndExpandViewport">
-                    <VerticalLayout id="pieceListContainer" width="100">
-                      <!-- Button class="piecePicture" -->
-                    </VerticalLayout>
-                </VerticalScrollView>
-              </Cell>
-            </Row>
-          </TableLayout>
-        </Cell>
-        <Cell>
-          <TableLayout cellBackgroundColor="rgba(0, 0, 0, 0)" cellPadding="2 2 2 2">
-            <Row class="headerRow">
-              <Cell>
-                <Text class="panelHeader headerRow orangeText">Select a Puzzle</Text>
-              </Cell>
-            </Row>
-            <Row>
-              <Cell>
-                <HorizontalScrollView id="puzzleListScroll" color="#000000" scrollSensitivity="50" scrollbarBackgroundColor="#AD9F91" scrollbarColors="#FFFFFF|#E9D9C9|#E9D9C9|rgba(0.78 ,0.78,0.78,0.5)">
-                  <HorizontalLayout id="puzzleListContainer" height="150">
-                    <!-- Button class="puzzlePicture" -->
-                  </HorizontalLayout>
-                </HorizontalScrollView>
-              </Cell>
-            </Row>
-            <Row class="spacer" />
-            <Row class="headerRow">
-              <Cell>
-                <Text class="panelHeader headerRow orangeText">Make Your Own</Text>
-              </Cell>
-            </Row>
-            <Row class="spacer" />
-            <Row class="customRow">
-              <Cell>
-                <Text class="customRow">Media URL</Text>
-              </Cell>
-            </Row>
-            <Row preferredHeight="35">
-              <Cell>
-                <InputField id="puzzleUrl" onEndEdit="onEndEdit_puzzleUrl"></InputField>
-              </Cell>
-            </Row>
-            <Row class="tip">
-              <Cell>
-                <Text class="tip">Media Tip #1: The URL must link directly to a JPG, PNG, WEBM, MP4, M4V, or MOV file</Text>
-              </Cell>
-            </Row>
-            <Row class="tip">
-              <Cell>
-                <Text class="tip">Media Tip #2: file:// URLs are local and should not be used in a multiplayer session</Text>
-              </Cell>
-            </Row>
-            <Row class="spacer" />
-            <Row class="customRow">
-              <Cell>
-                <Text id="templateTitle" class="customRow">Template</Text>
-              </Cell>
-            </Row>
-            <Row preferredHeight="200">
-              <Cell>
-                <ToggleGroup id="templateSelection" selectedId="">
-                  <TableLayout id="templateListContainer" cellBackgroundColor="rgba(0, 0, 0, 0)">
-                    <!-- Row class="templateHeaderRow" -->
-                      <!-- Cell -->
-                        <!-- Text class="templateHeaderRow" /-->
-                      <!-- /Cell -->
-                    <!-- /Row -->
-                    <!-- Row -->
-                      <!-- Cell -->
-                        <!-- ToggleButton class="templateSelection" /-->
-                      <!-- /Cell -->
-                      <!-- ... /-->
-                    <!-- /Row -->
-                    <!-- ... /-->
-                  </TableLayout>
-                </ToggleGroup>
-              </Cell>
-            </Row>
-            <Row class="tip">
-              <Cell>
-                <Text class="tip">Template Tip #1: Use the template that best matches your media's aspect ratio</Text>
-              </Cell>
-            </Row>
-            <Row class="spacer" />
-            <Row preferredheight="30">
-              <Cell>
-                <HorizontalLayout childForceExpandWidth="false" childAlignment="MiddleRight">
-                  <Button minWidth="120" onClick="onClick_CancelPuzzleSelector" fontSize="16">Cancel</Button>
-                  <Button minWidth="120" onClick="onClick_ContinuePuzzleSelector" fontSize="16">Continue</Button>
-                </HorizontalLayout>
-              </Cell>
-            </Row>
-          </TableLayout>
-        </Cell>
-      </Row>
-    </TableLayout>
+  <Row class="headerRow">
+    <Cell>
+      <Text class="panelHeader headerRow">Select a Puzzle</Text>
+    </Cell>
   </Row>
-</TableLayout>
-<TableLayout id="pictureUrlChanger" class="jjWindow pictureUrlChanger" visibility="Host" active="false">
+  <Row>
+    <Cell>
+      <VerticalScrollView id="puzzleListScroll" color="rgba(0, 0, 0, 0)" scrollSensitivity="50">
+        <GridLayout id="puzzleListContainer" class="puzzleList">
+          <!-- Button class="puzzlePicture" -->
+        </GridLayout>
+      </VerticalScrollView>
+    </Cell>
+  </Row>
+  <Row class="spacer" />
+  <Row class="headerRow">
+    <Cell>
+      <Text class="panelHeader headerRow">Make Your Own</Text>
+    </Cell>
+  </Row>
+  <Row class="spacer" />
   <Row class="customRow">
     <Cell>
       <Text class="customRow">Media URL</Text>
@@ -503,15 +329,55 @@
   </Row>
   <Row preferredHeight="30">
     <Cell>
-      <InputField id="newPictureUrl" onEndEdit="onEndEdit_newPictureUrl"></InputField>
+      <InputField id="puzzleUrl" onEndEdit="onEndEdit_puzzleUrl"></InputField>
+    </Cell>
+  </Row>
+  <Row class="tip">
+    <Cell>
+      <Text class="tip">Media Tip #1: The URL must link directly to a JPG, PNG, WEBM, MP4, M4V, or MOV file</Text>
+    </Cell>
+  </Row>
+  <Row class="tip">
+    <Cell>
+      <Text class="tip">Media Tip #2: file:// URLs are local and should not be used in a multiplayer session</Text>
     </Cell>
   </Row>
   <Row class="spacer" />
-  <Row preferredheight="25">
+  <Row class="customRow">
+    <Cell>
+      <Text class="customRow">Template</Text>
+    </Cell>
+  </Row>
+  <Row preferredHeight="140">
+    <Cell>
+      <ToggleGroup id="templateSelection" selectedId="">
+        <TableLayout id="templateListContainer" cellBackgroundColor="rgba(0, 0, 0, 0)">
+          <!-- Row class="templateHeaderRow" -->
+            <!-- Cell -->
+              <!-- Text class="templateHeaderRow" /-->
+            <!-- /Cell -->
+          <!-- /Row -->
+          <!-- Row -->
+            <!-- Cell -->
+              <!-- ToggleButton class="templateSelection" /-->
+            <!-- /Cell -->
+            <!-- ... /-->
+          <!-- /Row -->
+          <!-- ... /-->
+        </TableLayout>
+      </ToggleGroup>
+    </Cell>
+  </Row>
+  <Row class="tip">
+    <Cell>
+      <Text class="tip">Template Tip #1: Use the template that best matches your media's aspect ratio</Text>
+    </Cell>
+  </Row>
+  <Row class="spacer" />
+  <Row preferredheight="20">
     <Cell>
       <HorizontalLayout childForceExpandWidth="false" childAlignment="MiddleRight">
-        <Button minWidth="120" onClick="onClick_CancelNewPictureUrl">Cancel</Button>
-        <Button minWidth="120" onClick="onClick_ContinueNewPictureUrl">Continue</Button>
+        <Button minWidth="120" onClick="onClick_CancelPuzzleSelector">Cancel</Button><Button minWidth="120" onClick="onClick_ContinuePuzzleSelector">Continue</Button>
       </HorizontalLayout>
     </Cell>
   </Row>
