@@ -2307,7 +2307,7 @@ function generatePieceDataSquare(dims, rng, pieceData)
       local neighbors = {}
       for dy = math.max(-1, 1-ih), math.min(1, dims.height - ih) do
         for dx = math.max(-1, 1-iw), math.min(1, dims.width - iw) do
-          if dx != 0 or dy != 0 then
+          if math.abs(dx) + math.abs(dy) == 1 then
             table.insert(neighbors, (ih + dy - 1) * dims.width + iw + dx)
           end
         end
